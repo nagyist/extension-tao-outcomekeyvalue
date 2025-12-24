@@ -22,7 +22,8 @@ namespace test\unit\models\classes;
 
 use common_exception_InvalidArgumentType;
 use common_persistence_Manager;
-use oat\generis\test\TestCase;
+use oat\generis\test\ServiceManagerMockTrait;
+use PHPUnit\Framework\TestCase;
 use oat\taoResultServer\models\Exceptions\DuplicateVariableException;
 use taoAltResultStorage_models_classes_KeyValueResultStorage;
 use taoResultServer_models_classes_OutcomeVariable;
@@ -36,6 +37,8 @@ use taoResultServer_models_classes_OutcomeVariable;
  */
 class KeyValueResultStorageTest extends TestCase
 {
+    use ServiceManagerMockTrait;
+
     public function testStoreItemVariable()
     {
         $storage = $this->getStorage();
@@ -94,7 +97,7 @@ class KeyValueResultStorageTest extends TestCase
             ],
         ]);
 
-        $sl = $this->getServiceLocatorMock([
+        $sl = $this->getServiceManagerMock([
             common_persistence_Manager::SERVICE_ID => $persistenceManager,
             taoAltResultStorage_models_classes_KeyValueResultStorage::SERVICE_ID => $storage,
         ]);
